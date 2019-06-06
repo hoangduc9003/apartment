@@ -25,6 +25,7 @@ class CreateCustomersTable extends Migration
             $table->string('marital_status')->nullable();
             $table->string('ethnic_group')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

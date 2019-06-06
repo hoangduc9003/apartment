@@ -23,6 +23,7 @@ class CreateCustomerAddressesTable extends Migration
             $table->string('address')->nullable();
             $table->string('full_address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

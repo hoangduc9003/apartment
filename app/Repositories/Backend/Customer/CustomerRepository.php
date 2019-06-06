@@ -1,23 +1,12 @@
 <?php
 
-namespace App\Repositories\Backend\Auth;
+namespace App\Repositories\Backend\Customer;
 
 use App\Models\Customer\Customer;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
-use App\Events\Backend\Auth\User\UserCreated;
-use App\Events\Backend\Auth\User\UserUpdated;
-use App\Events\Backend\Auth\User\UserRestored;
-use App\Events\Backend\Auth\User\UserConfirmed;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Events\Backend\Auth\User\UserDeactivated;
-use App\Events\Backend\Auth\User\UserReactivated;
-use App\Events\Backend\Auth\User\UserUnconfirmed;
-use App\Events\Backend\Auth\User\UserPasswordChanged;
-use App\Notifications\Backend\Auth\UserAccountActive;
-use App\Events\Backend\Auth\User\UserPermanentlyDeleted;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**
  * Class UserRepository.
@@ -32,15 +21,6 @@ class CustomerRepository extends BaseRepository
         return Customer::class;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUnconfirmedCount() : int
-    {
-        return $this->model
-            ->where('confirmed', false)
-            ->count();
-    }
 
     /**
      * @param int    $paged
@@ -88,10 +68,10 @@ class CustomerRepository extends BaseRepository
                 'email' => $data['email'],
                 'age' => $data['age'],
                 'gender' => $data['gender'],
-                'nationality_id' => $data['nationality_id'],
                 'phone' => $data['phone'],
-                'marital_status' => $data['marital_status'],
-                'ethnic_group' => $data['ethnic_group'],
+                'nationality_id' => $data['nationality_id'],
+                // 'marital_status' => $data['marital_status'],
+                // 'ethnic_group' => $data['ethnic_group'],
             ]);
 
             if ($customer) {
@@ -123,8 +103,8 @@ class CustomerRepository extends BaseRepository
                 'phone' => $data['phone'],
                 'age' => $data['age'],
                 'gender' => $data['gender'],
-                'marital_status' => $data['marital_status'],
-                'ethnic_group' => $data['ethnic_group'],
+                // 'marital_status' => $data['marital_status'],
+                // 'ethnic_group' => $data['ethnic_group'],
                 'nationality_id' => $data['nationality_id'],
             ])) {
 

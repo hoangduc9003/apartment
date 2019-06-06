@@ -48,6 +48,15 @@ return [
             'history' => 'History',
             'system' => 'System',
         ],
+
+        'customer' => [
+            'all' => 'All Customers',
+            'create' => 'Create Customer',
+            'deleted' => 'Deleted Customers',
+            'edit' => 'Edit Customer',
+            'main' => 'Customers',
+            'view' => 'View Customer',
+        ],
     ],
 
     'language-picker' => [

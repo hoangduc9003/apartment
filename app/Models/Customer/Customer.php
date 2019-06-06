@@ -8,7 +8,7 @@ use App\Models\Common\BaseModel;
 class Customer extends BaseModel
 {
     protected $table = 'customers';
-    public $fillable = ['nationality_id', 'first_name', 'last_name', 'age', 'gender',
+    public $fillable = ['nationality_id', 'first_name', 'last_name', 'age', 'email', 'gender',
         'phone', 'marital_status', 'ethnic_group'];
 
 
@@ -81,13 +81,13 @@ class Customer extends BaseModel
      */
     public function getActionButtonsAttribute()
     {
-        if ($this->trashed()) {
-            return '
-				<div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
-				  '.$this->restore_button.'
-				  '.$this->delete_permanently_button.'
-				</div>';
-        }
+    //     if ($this->trashed()) {
+    //         return '
+				// <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
+				//   '.$this->restore_button.'
+				//   '.$this->delete_permanently_button.'
+				// </div>';
+    //     }
 
         return '
     	<div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">

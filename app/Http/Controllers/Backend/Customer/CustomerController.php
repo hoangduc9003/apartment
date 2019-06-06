@@ -31,7 +31,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return View('backend.customer.index');
+        return View('backend.customer.index')
+        ->withCustomers($this->customerRepository->getPaginated(25, 'id', 'asc'));;
     }
 
     /**
@@ -59,9 +60,9 @@ class CustomerController extends Controller
             'gender',
             'age',
             'phone',
-            'marital_status',
-            'ethnic_group',
             'nationality_id'
+            // 'marital_status',
+            // 'ethnic_group',      
         ));
 
         return redirect()->route('admin.customer.index')->withFlashSuccess(__('alerts.backend.customer.created'));
@@ -107,9 +108,9 @@ class CustomerController extends Controller
             'gender',
             'age',
             'phone',
-            'marital_status',
-            'ethnic_group',
             'nationality_id'
+            // 'marital_status',
+            // 'ethnic_group',         
         ));
 
         return redirect()->route('admin.customer.index')->withFlashSuccess(__('alerts.backend.customer.updated'));
@@ -127,5 +128,46 @@ class CustomerController extends Controller
 
 
         return redirect()->route('admin.customer.deleted')->withFlashSuccess(__('alerts.customer.deleted'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function getDeleted(Request $request)
+    {
+        return view('backend.customer.deleted')
+            ->withCustomers($this->customerRepository->getDeletedPaginated(25, 'id', 'asc'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Customer              $deletedCustomer
+     *
+     * @throws \App\Exceptions\GeneralException
+     * @throws \Throwable
+     * @return mixed
+     */
+    public function delete(Request $request, Customer $deletedCustomer)
+    {
+        $this->customerRepository->forceDelete($deletedCustomer);
+
+        return redirect()->route('admin.customer.deleted')->withFlashSuccess(__('alerts.backend.customer.deleted_permanently'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Customer              $deletedCustomer
+     *
+     * @throws \App\Exceptions\GeneralException
+     * @return mixed
+     */
+    public function restore(Request $request, Customer $deletedCustomer)
+    {
+        $this->customerRepository->restore($deletedCustomer);
+
+        return redirect()->route('admin.customer.index')->withFlashSuccess(__('alerts.backend.customer.restored'));
     }
 }

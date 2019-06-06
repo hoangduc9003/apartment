@@ -22,6 +22,7 @@ class CreateRenterHistoriesTable extends Migration
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

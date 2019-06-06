@@ -22,6 +22,7 @@ class CreateCustomerIdentificationsTable extends Migration
             $table->date('expiry_date')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

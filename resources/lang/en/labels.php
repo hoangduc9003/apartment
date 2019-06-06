@@ -46,10 +46,11 @@ return [
             'marital_status' => "Marital Status",
             'ethnic_group' => "Ethnic Group",
         ],
-        'title' => [
-            'customer' => [
-                'management' => 'Customer Management'
-            ]
+        'customer' => [
+            'management' => 'Customer Management',
+            'create' => "Create Customer",
+            'edit' => "Edit Customer",
+            'total' => 'customer total|customers total',
         ],
         'access' => [
             'roles' => [
