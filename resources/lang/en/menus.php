@@ -57,6 +57,15 @@ return [
             'main' => 'Customers',
             'view' => 'View Customer',
         ],
+
+        'apartment' => [
+            'all' => 'All Apartments',
+            'create' => 'Create Apartment',
+            'deleted' => 'Deleted Apartment',
+            'edit' => 'Edit Apartment',
+            'main' => 'Apartments',
+            'view' => 'View Apartment',
+        ],
     ],
 
     'language-picker' => [

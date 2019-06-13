@@ -59,8 +59,8 @@ class CustomerController extends Controller
             'email',
             'gender',
             'age',
-            'phone',
-            'nationality_id'
+            'phone'
+//            'nationality_id'
             // 'marital_status',
             // 'ethnic_group',      
         ));
@@ -107,8 +107,8 @@ class CustomerController extends Controller
             'email',
             'gender',
             'age',
-            'phone',
-            'nationality_id'
+            'phone'
+//            'nationality_id'
             // 'marital_status',
             // 'ethnic_group',         
         ));

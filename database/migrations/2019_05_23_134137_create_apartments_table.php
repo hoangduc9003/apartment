@@ -21,10 +21,10 @@ class CreateApartmentsTable extends Migration
             $table->integer('number_of_floors')->nullable();
             $table->integer('number_of_rooms')->nullable();
             $table->string('color')->nullable();
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('commune_id');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('commune_id')->nullable();
             $table->string('address')->nullable();
             $table->string('full_address')->nullable();
             $table->softDeletes();

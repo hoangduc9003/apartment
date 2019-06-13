@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Backend\Apartment\ApartmentController;
 use App\Http\Controllers\Backend\DashboardController;
 
 // All route names are prefixed with 'admin.'.
@@ -21,4 +22,21 @@ Route::group(['prefix' => 'customer/{customer}'], function () {
     // Deleted
     Route::get('delete', [CustomerController::class, 'delete'])->name('customer.delete-permanently');
     Route::get('restore', [CustomerController::class, 'restore'])->name('customer.restore');
+});
+
+// Apartment Routes
+Route::get('apartment/deleted', [ApartmentController::class, 'getDeleted'])->name('apartment.deleted');
+Route::get('apartment', [ApartmentController::class, 'index'])->name('apartment.index');
+Route::get('apartment/create', [ApartmentController::class, 'create'])->name('apartment.create');
+Route::post('apartment', [ApartmentController::class, 'store'])->name('apartment.store');
+Route::group(['prefix' => 'apartment/{apartment}'], function () {
+    // User
+    Route::get('/', [ApartmentController::class, 'show'])->name('apartment.show');
+    Route::get('edit', [ApartmentController::class, 'edit'])->name('apartment.edit');
+    Route::patch('/', [ApartmentController::class, 'update'])->name('apartment.update');
+    Route::delete('/', [ApartmentController::class, 'destroy'])->name('apartment.destroy');
+
+    // Deleted
+    Route::get('delete', [ApartmentController::class, 'delete'])->name('apartment.delete-permanently');
+    Route::get('restore', [ApartmentController::class, 'restore'])->name('apartment.restore');
 });

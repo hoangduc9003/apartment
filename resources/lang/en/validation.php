@@ -196,6 +196,14 @@ return [
                 'timezone' => 'Timezone',
                 'language' => 'Language',
             ],
+
+            'apartment' => [
+                'apartment_name' => 'Apartment Name',
+                'color' => 'Color',
+                'number_of_floors' => "Number Of Floors",
+                'number_of_rooms' => 'Number Of Rooms',
+                'apartment_actions' => 'Apartment Actions',
+            ],
         ],
 
         'frontend' => [
