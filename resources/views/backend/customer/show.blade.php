@@ -1,10 +1,7 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.view'))
+@section('title', __('labels.backend.customer.management') . ' | ' . __('labels.backend.customer.view'))
 
-@section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
-@endsection
 
 @section('content')
 <div class="card">
@@ -12,8 +9,8 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    @lang('labels.backend.access.users.management')
-                    <small class="text-muted">@lang('labels.backend.access.users.view')</small>
+                    @lang('labels.backend.customer.management')
+                    <small class="text-muted">@lang('labels.backend.customer.view')</small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -28,7 +25,33 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
-                        @include('backend.auth.user.show.tabs.overview')
+                        <div class="col">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>@lang('labels.backend.access.users.tabs.content.overview.name')</th>
+                                        <td>{{ $customer->name }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>@lang('labels.backend.access.users.tabs.content.overview.email')</th>
+                                        <td>{{ $customer->email }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>@lang('labels.backend.access.users.tabs.content.overview.status')</th>
+                                        <td>{!! $customer->gender !!}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>@lang('labels.backend.access.users.tabs.content.overview.confirmed')</th>
+                                        <td>{!! $customer->phone !!}</td>
+                                    </tr>
+
+                                    
+                                </table>
+                            </div>
+                        </div><!--table-responsive-->
                     </div><!--tab-->
                 </div><!--tab-content-->
             </div><!--col-->
@@ -39,10 +62,10 @@
         <div class="row">
             <div class="col">
                 <small class="float-right text-muted">
-                    <strong>@lang('labels.backend.access.users.tabs.content.overview.created_at'):</strong> {{ timezone()->convertToLocal($user->created_at) }} ({{ $user->created_at->diffForHumans() }}),
-                    <strong>@lang('labels.backend.access.users.tabs.content.overview.last_updated'):</strong> {{ timezone()->convertToLocal($user->updated_at) }} ({{ $user->updated_at->diffForHumans() }})
-                    @if($user->trashed())
-                        <strong>@lang('labels.backend.access.users.tabs.content.overview.deleted_at'):</strong> {{ timezone()->convertToLocal($user->deleted_at) }} ({{ $user->deleted_at->diffForHumans() }})
+                    <strong>@lang('labels.backend.access.users.tabs.content.overview.created_at'):</strong> {{ timezone()->convertToLocal($customer->created_at) }} ({{ $customer->created_at->diffForHumans() }}),
+                    <strong>@lang('labels.backend.access.users.tabs.content.overview.last_updated'):</strong> {{ timezone()->convertToLocal($customer->updated_at) }} ({{ $customer->updated_at->diffForHumans() }})
+                    @if($customer->trashed())
+                        <strong>@lang('labels.backend.access.users.tabs.content.overview.deleted_at'):</strong> {{ timezone()->convertToLocal($customer->deleted_at) }} ({{ $customer->deleted_at->diffForHumans() }})
                     @endif
                 </small>
             </div><!--col-->

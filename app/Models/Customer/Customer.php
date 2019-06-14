@@ -4,9 +4,12 @@ namespace App\Models\Customer;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Common\BaseModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends BaseModel
 {
+    use SoftDeletes;
+
     protected $table = 'customers';
     public $fillable = ['nationality_id', 'first_name', 'last_name', 'age', 'email', 'gender',
         'phone', 'marital_status', 'ethnic_group'];
@@ -81,16 +84,16 @@ class Customer extends BaseModel
      */
     public function getActionButtonsAttribute()
     {
-    //     if ($this->trashed()) {
-    //         return '
-				// <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
-				//   '.$this->restore_button.'
-				//   '.$this->delete_permanently_button.'
-				// </div>';
-    //     }
+        if ($this->trashed()) {
+            return '
+				<div class="btn-group" role="group" aria-label="'.__('labels.backend.customer.customer_actions').'">
+				  '.$this->restore_button.'
+				  '.$this->delete_permanently_button.'
+				</div>';
+        }
 
         return '
-    	<div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
+    	<div class="btn-group" role="group" aria-label="'.__('labels.backend.customer.customer_actions').'">
 		  '.$this->show_button.'
 		  '.$this->edit_button.'
 		  '.$this->delete_button.'

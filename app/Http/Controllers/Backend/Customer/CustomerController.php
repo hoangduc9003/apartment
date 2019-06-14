@@ -59,8 +59,8 @@ class CustomerController extends Controller
             'email',
             'gender',
             'age',
-            'phone',
-            'nationality_id'
+            'phone'
+            // 'nationality_id',
             // 'marital_status',
             // 'ethnic_group',      
         ));
@@ -107,8 +107,8 @@ class CustomerController extends Controller
             'email',
             'gender',
             'age',
-            'phone',
-            'nationality_id'
+            'phone'
+            // 'nationality_id',
             // 'marital_status',
             // 'ethnic_group',         
         ));
@@ -166,6 +166,8 @@ class CustomerController extends Controller
      */
     public function restore(Request $request, Customer $deletedCustomer)
     {
+        dd($deletedCustomer);
+        // $deletedCustomer = Customer::find($request->get('id'))
         $this->customerRepository->restore($deletedCustomer);
 
         return redirect()->route('admin.customer.index')->withFlashSuccess(__('alerts.backend.customer.restored'));
