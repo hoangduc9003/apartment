@@ -69,7 +69,7 @@ class CustomerRepository extends BaseRepository
                 'age' => $data['age'],
                 'gender' => $data['gender'],
                 'phone' => $data['phone'],
-                'nationality_id' => $data['nationality_id'],
+                // 'nationality_id' => $data['nationality_id'],
                 // 'marital_status' => $data['marital_status'],
                 // 'ethnic_group' => $data['ethnic_group'],
             ]);
@@ -105,7 +105,7 @@ class CustomerRepository extends BaseRepository
                 'gender' => $data['gender'],
                 // 'marital_status' => $data['marital_status'],
                 // 'ethnic_group' => $data['ethnic_group'],
-                'nationality_id' => $data['nationality_id'],
+                // 'nationality_id' => $data['nationality_id'],
             ])) {
 
                 return $customer;
@@ -149,6 +149,7 @@ class CustomerRepository extends BaseRepository
      */
     public function restore(Customer $customer) : Customer
     {
+        dd($customer->first_name);
         if ($customer->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
         }

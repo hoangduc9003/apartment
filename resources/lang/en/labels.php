@@ -57,6 +57,8 @@ return [
             'create' => "Create Customer",
             'edit' => "Edit Customer",
             'total' => 'customer total|customers total',
+            'deleted' => 'Deleted Customers',
+            'customer_actions' => 'Customer Actions',
         ],
         'apartment' => [
             'management' => 'Customer Apartment',

@@ -1,10 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.customer.management') . ' | ' . __('labels.backend.access.users.deleted'))
-
-@section('breadcrumb-links')
-    <!-- @include('backend.auth.user.includes.breadcrumb-links') -->
-@endsection
+@section('title', __('labels.backend.customer.management') . ' | ' . __('labels.backend.customer.deleted'))
 
 @section('content')
 <div class="card">
@@ -13,7 +9,7 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     @lang('labels.backend.customer.management')
-                    <small class="text-muted">@lang('labels.backend.access.users.deleted')</small>
+                    <small class="text-muted">@lang('labels.backend.customer.deleted')</small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -23,15 +19,15 @@
                 <div class="table-responsive">
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th>@lang('labels.backend.common.last_name')</th>
-                                <th>@lang('labels.backend.common.first_name')</th>
-                                <th>@lang('labels.backend.common.email')</th>
-                                <th>@lang('labels.backend.common.age')</th>
-                                <th>@lang('labels.backend.common.phone')</th>
-                                <th>@lang('labels.backend.common.gender')</th>
-                                <th>@lang('labels.general.actions')</th>
-                            </tr>
+                                <tr>
+                                    <th>@lang('labels.backend.common.last_name')</th>
+                                    <th>@lang('labels.backend.common.first_name')</th>
+                                    <th>@lang('labels.backend.common.email')</th>
+                                    <th>@lang('labels.backend.common.age')</th>
+                                    <th>@lang('labels.backend.common.phone')</th>
+                                    <th>@lang('labels.backend.common.gender')</th>
+                                    <th>@lang('labels.general.actions')</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($customers as $customer)
