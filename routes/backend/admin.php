@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Backend\Apartment\ApartmentController;
+use App\Http\Controllers\Backend\Location\CountryController;
 use App\Http\Controllers\Backend\DashboardController;
 
 // All route names are prefixed with 'admin.'.
@@ -39,4 +40,19 @@ Route::group(['prefix' => 'apartment/{apartment}'], function () {
     // Deleted
     Route::get('delete', [ApartmentController::class, 'delete'])->name('apartment.delete-permanently');
     Route::get('restore', [ApartmentController::class, 'restore'])->name('apartment.restore');
+});
+
+
+// Country Routes
+Route::get('country', [CountryController::class, 'index'])->name('country.index');
+Route::get('country/create', [CountryController::class, 'create'])->name('country.create');
+Route::post('country', [CountryController::class, 'store'])->name('country.store');
+Route::get('country/import', [CountryController::class, 'import'])->name('country.import');
+Route::post('country/postImport', [CountryController::class, 'postImport'])->name('country.post.import');
+Route::group(['prefix' => 'apartment/{apartment}'], function () {
+    // User
+    Route::get('/', [CountryController::class, 'show'])->name('country.show');
+    Route::get('edit', [CountryController::class, 'edit'])->name('country.edit');
+    Route::patch('/', [CountryController::class, 'update'])->name('country.update');
+    Route::delete('/', [CountryController::class, 'destroy'])->name('country.destroy');
 });

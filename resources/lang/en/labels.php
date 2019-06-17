@@ -51,6 +51,7 @@ return [
             'commune' => 'Commune',
             'address' => 'Address',
             'full_address' => 'Full Address',
+            'code' => 'Code',
         ],
         'customer' => [
             'management' => 'Customer Management',
@@ -71,6 +72,16 @@ return [
             'number_of_rooms' => 'Number Of Rooms',
             'owner' => "Owner",
             'apartment_actions' => 'Apartment Actions',
+        ],
+        'country' => [
+            'management' => 'Customer Country',
+            'create' => "Create Country",
+            'edit' => "Edit Country",
+            'total' => 'country total|country total',
+            'two_letter_iso_code' => 'Two Letter Iso Code',
+            'three_letter_iso_code' => 'Three Letter Iso Code',
+            'nationality' => "Nationality",
+            'country_actions' => 'Country Actions',
         ],
         'access' => [
             'roles' => [

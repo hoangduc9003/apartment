@@ -190,6 +190,8 @@ return [
         App\Providers\HelperServiceProvider::class,
         App\Providers\ObserverServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -241,5 +243,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // Package Aliases
+
+        // Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 ];
