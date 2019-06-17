@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Backend\Apartment;
 
-use App\Models\Apartment\Apartment;
+use App\Models\Apartment\Room;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -11,14 +11,14 @@ use Illuminate\Pagination\LengthAwarePaginator;
 /**
  * Class UserRepository.
  */
-class ApartmentRepository extends BaseRepository
+class RoomRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model()
     {
-        return Apartment::class;
+        return Room::class;
     }
 
 
@@ -57,26 +57,27 @@ class ApartmentRepository extends BaseRepository
      *
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Room
      */
-    public function create(array $data) : Apartment
+    public function create(array $data) : Room
     {
         return DB::transaction(function () use ($data) {
-            $apartment = parent::create([
-//                'address' => $data['address'],
-                'full_address' => $data['full_address'],
-                'apartment_name' => $data['apartment_name'],
-                'color' => $data['color'],
-                'number_of_floors' => $data['number_of_floors'],
-                'number_of_rooms' => $data['number_of_rooms'],
-//                 'country_id' => $data['country_id'],
-//                 'city_id' => $data['city_id'],
-//                 'district_id' => $data['district_id'],
-//                 'commune_id' => $data['commune_id'],
+            $room = parent::create([
+                'bed' => $data['bed'],
+                'cabinet' => $data['cabinet'],
+                'apartment_id' => $data['apartment_id'],
+                'chair' => $data['chair'],
+                'bathroom' => $data['bathroom'],
+                'air_conditional' => $data['air_conditional'],
+                'electric_water_heater' => $data['electric_water_heater'],
+                'feature' => $data['feature'],
+                'floor' => $data['floor'],
+                'way' => $data['way'],
+                'width' => $data['width'],
             ]);
 
-            if ($apartment) {
-                return $apartment;
+            if ($room) {
+                return $room;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.create_error'));
@@ -84,32 +85,33 @@ class ApartmentRepository extends BaseRepository
     }
 
     /**
-     * @param Apartment $apartment
+     * @param Room $room
      * @param array $data
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Room
      */
-    public function update(Apartment $apartment, array $data) : Apartment
+    public function update(Room $room, array $data) : Room
     {
 
-        return DB::transaction(function () use ($apartment, $data) {
-            if ($apartment->update([
-//                'address' => $data['address'],
-                'full_address' => $data['full_address'],
-                'apartment_name' => $data['apartment_name'],
-                'color' => $data['color'],
-                'number_of_floors' => $data['number_of_floors'],
-                'number_of_rooms' => $data['number_of_rooms'],
-//                'country_id' => $data['country_id'],
-//                'city_id' => $data['city_id'],
-//                'district_id' => $data['district_id'],
-//                'commune_id' => $data['commune_id'],
+        return DB::transaction(function () use ($room, $data) {
+            if ($room->update([
+                'bed' => $data['bed'],
+                'cabinet' => $data['cabinet'],
+                'apartment_id' => $data['apartment_id'],
+                'chair' => $data['chair'],
+                'bathroom' => $data['bathroom'],
+                'air_conditional' => $data['air_conditional'],
+                'electric_water_heater' => $data['electric_water_heater'],
+                'feature' => $data['feature'],
+                'floor' => $data['floor'],
+                'way' => $data['way'],
+                'width' => $data['width'],
             ])) {
 
-                return $apartment;
+                return $room;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.update_error'));
@@ -118,24 +120,24 @@ class ApartmentRepository extends BaseRepository
 
 
     /**
-     * @param Apartment $apartment
+     * @param Room $room
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Room
      */
-    public function forceDelete(Apartment $apartment) : Apartment
+    public function forceDelete(Room $room) : Room
     {
-        if ($apartment->deleted_at === null) {
+        if ($room->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.delete_first'));
         }
 
-        return DB::transaction(function () use ($apartment) {
+        return DB::transaction(function () use ($room) {
             // Delete associated relationships
 
-            if ($apartment->forceDelete()) {
-                return $apartment;
+            if ($room->forceDelete()) {
+                return $room;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.delete_error'));
@@ -143,19 +145,19 @@ class ApartmentRepository extends BaseRepository
     }
 
     /**
-     * @param Apartment $apartment
+     * @param Room $room
      *
      * @throws GeneralException
-     * @return Apartment
+     * @return Room
      */
-    public function restore(Apartment $apartment) : Apartment
+    public function restore(Room $room) : Room
     {
-        if ($apartment->deleted_at === null) {
+        if ($room->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
         }
 
-        if ($apartment->restore()) {
-            return $apartment;
+        if ($room->restore()) {
+            return $room;
         }
 
         throw new GeneralException(__('exceptions.backend.access.users.restore_error'));

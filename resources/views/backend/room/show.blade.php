@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.apartment.management') . ' | ' . __('labels.backend.apartment.view'))
+@section('title', __('labels.backend.room.management') . ' | ' . __('labels.backend.room.view'))
 
 {{--@section('breadcrumb-links')--}}
 {{--    @include('backend.auth.user.includes.breadcrumb-links')--}}
@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    @lang('labels.backend.apartment.management')
-                    <small class="text-muted">@lang('labels.backend.apartment.view')</small>
+                    @lang('labels.backend.room.management')
+                    <small class="text-muted">@lang('labels.backend.room.view')</small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -22,7 +22,7 @@
             <div class="col">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"><i class="fas fa-user"></i> @lang('labels.backend.access.users.tabs.titles.overview')</a>
+                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"><i class="fas fa-user"></i> @lang('labels.backend.room.overview')</a>
                     </li>
                 </ul>
 
@@ -32,13 +32,13 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <tr>
-                                        <th>@lang('labels.backend.apartment.apartment_name')</th>
-                                        <td>{{ $apartment->apartment_name }}</td>
+                                        <th>@lang('labels.backend.room.feature')</th>
+                                        <td>{{ $room->feature }}</td>
                                     </tr>
 
                                     <tr>
-                                        <th>@lang('labels.backend.apartment.number_of_floors')</th>
-                                        <td>{{ $apartment->number_of_floors }}</td>
+                                        <th>@lang('labels.backend.room.bed')</th>
+                                        <td>{{ $apartment->bed }}</td>
                                     </tr>
 
                                     <tr>

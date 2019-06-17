@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.customer.management') . ' | ' . __('labels.backend.access.users.deleted'))
+@section('title', __('labels.backend.apartment.management') . ' | ' . __('labels.backend.apartment.deleted'))
 
 @section('breadcrumb-links')
     <!-- @include('backend.auth.user.includes.breadcrumb-links') -->
@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    @lang('labels.backend.customer.management')
-                    <small class="text-muted">@lang('labels.backend.access.users.deleted')</small>
+                    @lang('labels.backend.apartment.management')
+                    <small class="text-muted">@lang('labels.backend.apartment.deleted')</small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -21,45 +21,45 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>@lang('labels.backend.apartment.apartment_name')</th>
+                            <th>@lang('labels.backend.apartment.owner')</th>
+                            <th>@lang('labels.backend.apartment.number_of_floors')</th>
+                            <th>@lang('labels.backend.apartment.number_of_rooms')</th>
+                            <th>@lang('labels.backend.apartment.color')</th>
+                            <th>@lang('labels.backend.common.full_address')</th>
+                            <th>@lang('labels.general.actions')</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($apartments as $apartment)
                             <tr>
-                                <th>@lang('labels.backend.common.last_name')</th>
-                                <th>@lang('labels.backend.common.first_name')</th>
-                                <th>@lang('labels.backend.common.email')</th>
-                                <th>@lang('labels.backend.common.age')</th>
-                                <th>@lang('labels.backend.common.phone')</th>
-                                <th>@lang('labels.backend.common.gender')</th>
-                                <th>@lang('labels.general.actions')</th>
+                                <td>{{ $apartment->apartment_name }}</td>
+                                <td></td>
+                                <td>{{ $apartment->number_of_floors }}</td>
+                                <td>{{ $apartment->number_of_rooms }}</td>
+                                <td>{{ $apartment->color }}</td>
+                                <td>{{ $apartment->full_address }}</td>
+                                <td>{!! $apartment->action_buttons !!}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($customers as $customer)
-                               <tr>
-                                    <td>{{ $customer->last_name }}</td>
-                                    <td>{{ $customer->first_name }}</td>
-                                    <td>{{ $customer->email }}</td>
-                                    <td>{{ $customer->age }}</td>
-                                    <td>{{ $customer->phone }}</td>                                    
-                                    <td>{{ $customer->gender }}</td>
-                                    <td>{!! $customer->action_buttons !!}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div><!--col-->
         </div><!--row-->
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $customers->total() !!} {{ trans_choice('labels.backend.customer.total', $customers->total()) }}
+                    {!! $apartments->total() !!} {{ trans_choice('labels.backend.apartment.total', $apartments->total()) }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $customers->render() !!}
+                    {!! $apartments->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

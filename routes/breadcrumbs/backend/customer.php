@@ -7,7 +7,7 @@ Breadcrumbs::for('admin.customer.index', function ($trail) {
 
 Breadcrumbs::for('admin.customer.create', function ($trail) {
     $trail->parent('admin.customer.index');
-    $trail->push(__('labels.backend.customer.management'), route('admin.customer.create'));
+    $trail->push(__('labels.backend.customer.create'), route('admin.customer.create'));
 });
 
 Breadcrumbs::for('admin.customer.deleted', function ($trail) {

@@ -19,3 +19,9 @@ Breadcrumbs::for('admin.apartment.deleted', function ($trail) {
     $trail->parent('admin.customer.index');
     $trail->push(__('menus.backend.customer.deleted'), route('admin.apartment.deleted'));
 });
+
+
+Breadcrumbs::for('admin.apartment.show', function ($trail, $id) {
+    $trail->parent('admin.apartment.index');
+    $trail->push(__('menus.backend.apartment.view'), route('admin.apartment.show', $id));
+});

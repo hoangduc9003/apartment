@@ -15,14 +15,15 @@ class CreateRentersTable extends Migration
     {
         Schema::create('renters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('room_id')->nullable();    
             $table->dateTime('checkin')->nullable();
             $table->dateTime('checkout')->nullable();
             $table->boolean('is_checkout')->default(false);
-            $table->string('total_price_in_month_including_services')->nullable();
             $table->string('description')->nullable();
+            $table->string('customer_list')->nullable();
+            $table->string('service_list')->nullable();
+            $table->string('total_price')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

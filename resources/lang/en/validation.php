@@ -204,6 +204,20 @@ return [
                 'number_of_rooms' => 'Number Of Rooms',
                 'apartment_actions' => 'Apartment Actions',
             ],
+
+            'room' => [
+                'air_conditional' => 'Air Conditional',
+                'bath_room' => 'Bath Room',
+                'chair' => "Chair",
+                'cabinet' => 'Cabinet',
+                'bed' => "Bed",
+                'width' => "width",
+                'way' => "Way",
+                'floor' => "Floor",
+                'electric_water_heater' => "Electric Water Heater",
+                'feature' => "Feature",
+                'price' => "Price",
+            ],
         ],
 
         'frontend' => [

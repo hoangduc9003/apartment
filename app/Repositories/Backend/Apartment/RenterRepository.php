@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Backend\Apartment;
 
-use App\Models\Apartment\Apartment;
+use App\Models\Apartment\Renter;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -11,14 +11,14 @@ use Illuminate\Pagination\LengthAwarePaginator;
 /**
  * Class UserRepository.
  */
-class ApartmentRepository extends BaseRepository
+class RenterRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model()
     {
-        return Apartment::class;
+        return Renter::class;
     }
 
 
@@ -57,26 +57,25 @@ class ApartmentRepository extends BaseRepository
      *
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Renter
      */
-    public function create(array $data) : Apartment
+    public function create(array $data) : Renter
     {
         return DB::transaction(function () use ($data) {
-            $apartment = parent::create([
-//                'address' => $data['address'],
-                'full_address' => $data['full_address'],
-                'apartment_name' => $data['apartment_name'],
-                'color' => $data['color'],
-                'number_of_floors' => $data['number_of_floors'],
-                'number_of_rooms' => $data['number_of_rooms'],
-//                 'country_id' => $data['country_id'],
-//                 'city_id' => $data['city_id'],
-//                 'district_id' => $data['district_id'],
-//                 'commune_id' => $data['commune_id'],
+            $renter = parent::create([
+                'apartment_id' => $data['apartment_id'],
+                'room_id' => $data['room_id'],
+                'checkin' => $data['checkin'],
+                'checkout' => $data['checkout'],
+                'is_checkout' => $data['is_checkout'],
+                'description' => $data['description'],
+                'total_price' => $data['total_price'],
+                'customer_list' => $data['customer_list'],
+                'service_list' => $data['service_list'],
             ]);
 
-            if ($apartment) {
-                return $apartment;
+            if ($renter) {
+                return $renter;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.create_error'));
@@ -84,32 +83,31 @@ class ApartmentRepository extends BaseRepository
     }
 
     /**
-     * @param Apartment $apartment
+     * @param Renter $renter
      * @param array $data
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Renter
      */
-    public function update(Apartment $apartment, array $data) : Apartment
+    public function update(Renter $renter, array $data) : Renter
     {
 
-        return DB::transaction(function () use ($apartment, $data) {
-            if ($apartment->update([
-//                'address' => $data['address'],
-                'full_address' => $data['full_address'],
-                'apartment_name' => $data['apartment_name'],
-                'color' => $data['color'],
-                'number_of_floors' => $data['number_of_floors'],
-                'number_of_rooms' => $data['number_of_rooms'],
-//                'country_id' => $data['country_id'],
-//                'city_id' => $data['city_id'],
-//                'district_id' => $data['district_id'],
-//                'commune_id' => $data['commune_id'],
+        return DB::transaction(function () use ($renter, $data) {
+            if ($renter->update([
+                'apartment_id' => $data['apartment_id'],
+                'room_id' => $data['room_id'],
+                'checkin' => $data['checkin'],
+                'checkout' => $data['checkout'],
+                'is_checkout' => $data['is_checkout'],
+                'description' => $data['description'],
+                'total_price' => $data['total_price'],
+                'customer_list' => $data['customer_list'],
+                'service_list' => $data['service_list'],
             ])) {
 
-                return $apartment;
+                return $renter;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.update_error'));
@@ -118,24 +116,24 @@ class ApartmentRepository extends BaseRepository
 
 
     /**
-     * @param Apartment $apartment
+     * @param Renter $renter
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Apartment
+     * @return Renter
      */
-    public function forceDelete(Apartment $apartment) : Apartment
+    public function forceDelete(Renter $renter) : Renter
     {
-        if ($apartment->deleted_at === null) {
+        if ($renter->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.delete_first'));
         }
 
-        return DB::transaction(function () use ($apartment) {
+        return DB::transaction(function () use ($renter) {
             // Delete associated relationships
 
-            if ($apartment->forceDelete()) {
-                return $apartment;
+            if ($renter->forceDelete()) {
+                return $renter;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.delete_error'));
@@ -143,19 +141,19 @@ class ApartmentRepository extends BaseRepository
     }
 
     /**
-     * @param Apartment $apartment
+     * @param Renter $renter
      *
      * @throws GeneralException
-     * @return Apartment
+     * @return Renter
      */
-    public function restore(Apartment $apartment) : Apartment
+    public function restore(Renter $renter) : Renter
     {
-        if ($apartment->deleted_at === null) {
+        if ($renter->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
         }
 
-        if ($apartment->restore()) {
-            return $apartment;
+        if ($renter->restore()) {
+            return $renter;
         }
 
         throw new GeneralException(__('exceptions.backend.access.users.restore_error'));

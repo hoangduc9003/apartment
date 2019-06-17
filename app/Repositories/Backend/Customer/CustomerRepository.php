@@ -149,7 +149,6 @@ class CustomerRepository extends BaseRepository
      */
     public function restore(Customer $customer) : Customer
     {
-        dd($customer->first_name);
         if ($customer->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
         }

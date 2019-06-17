@@ -15,7 +15,7 @@ class ApartmentController extends Controller
     protected $apartmentRepository;
 
     /**
-     * UserController constructor.
+     * ApartmentController constructor.
      *
      * @param ApartmentRepository $apartmentRepository
      */
@@ -32,7 +32,7 @@ class ApartmentController extends Controller
     public function index()
     {
         return View('backend.apartment.index')
-            ->withApartments($this->apartmentRepository->getPaginated(25, 'id', 'asc'));;
+            ->withApartments($this->apartmentRepository->getPaginated(25, 'id', 'asc'));
     }
 
     /**
@@ -54,17 +54,16 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $this->apartmentRepository->create($request->only(
-            'address',
+//            'address',
             'apartment_name',
             'color',
             'full_address',
             'number_of_floors',
             'number_of_rooms',
-            'owner_id',
-            'country_id',
-            'city_id',
-            'district_id',
-            'commune_id'
+//            'country_id',
+//            'city_id',
+//            'district_id',
+//            'commune_id'
         ));
 
         return redirect()->route('admin.apartment.index')->withFlashSuccess(__('alerts.backend.apartment.created'));
@@ -104,17 +103,16 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         $this->apartmentRepository->update($apartment, $request->only(
-            'address',
+//            'address',
             'apartment_name',
             'color',
             'full_address',
             'number_of_floors',
-            'number_of_rooms',
-            'owner_id',
-            'country_id',
-            'city_id',
-            'district_id',
-            'commune_id'
+            'number_of_rooms'
+//            'country_id',
+//            'city_id',
+//            'district_id',
+//            'commune_id'
         ));
 
         return redirect()->route('admin.apartment.index')->withFlashSuccess(__('alerts.backend.apartment.updated'));
@@ -129,8 +127,6 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $this->apartmentRepository->deleteById($apartment->id);
-
-
         return redirect()->route('admin.apartment.deleted')->withFlashSuccess(__('alerts.apartment.deleted'));
     }
 
@@ -154,9 +150,10 @@ class ApartmentController extends Controller
      * @throws \Throwable
      * @return mixed
      */
-    public function delete(Request $request, Apartment $deletedApartment)
+    public function delete(Request $request)
     {
-        $this->apartmentRepository->forceDelete($deletedApartment);
+        $apartment = Apartment::withTrashed()->find($request->route('id'));
+        $this->apartmentRepository->forceDelete($apartment);
 
         return redirect()->route('admin.apartment.deleted')->withFlashSuccess(__('alerts.backend.apartment.deleted_permanently'));
     }
@@ -168,9 +165,10 @@ class ApartmentController extends Controller
      * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
-    public function restore(Request $request, Apartment $deletedApartment)
+    public function restore(Request $request)
     {
-        $this->apartmentRepository->restore($deletedApartment);
+        $apartment = Apartment::withTrashed()->find($request->route('id'));
+        $this->apartmentRepository->restore($apartment);
 
         return redirect()->route('admin.apartment.index')->withFlashSuccess(__('alerts.backend.apartment.restored'));
     }

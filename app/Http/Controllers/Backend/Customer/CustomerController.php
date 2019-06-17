@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Customer;
 
 use App\Models\Customer\Customer;
 use App\Repositories\Backend\Customer\CustomerRepository;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -151,9 +152,10 @@ class CustomerController extends Controller
      * @throws \Throwable
      * @return mixed
      */
-    public function delete(Request $request, Customer $deletedCustomer)
+    public function delete(Request $request)
     {
-        $this->customerRepository->forceDelete($deletedCustomer);
+        $customer = Customer::withTrashed()->find($request->route('id'));
+        $this->customerRepository->forceDelete($customer);
 
         return redirect()->route('admin.customer.deleted')->withFlashSuccess(__('alerts.backend.customer.deleted_permanently'));
     }
@@ -165,11 +167,10 @@ class CustomerController extends Controller
      * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
-    public function restore(Request $request, Customer $deletedCustomer)
+    public function restore(Request $request)
     {
-        dd($deletedCustomer);
-        // $deletedCustomer = Customer::find($request->get('id'))
-        $this->customerRepository->restore($deletedCustomer);
+        $customer = Customer::withTrashed()->find($request->route('id'));
+        $this->customerRepository->restore($customer);
 
         return redirect()->route('admin.customer.index')->withFlashSuccess(__('alerts.backend.customer.restored'));
     }
