@@ -1,20 +1,20 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.edit'))
+@section('title', __('labels.backend.apartment.management') . ' | ' . __('labels.backend.apartment.edit'))
 
 @section('breadcrumb-links')
 {{--    @include('backend.auth.user.includes.breadcrumb-links')--}}
 @endsection
 
 @section('content')
-{{ html()->modelForm($customer, 'PATCH', route('admin.customer.update', $customer->id))->class('form-horizontal')->open() }}
+{{ html()->modelForm($customer, 'PATCH', route('admin.apartment.update', $customer->id))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        @lang('labels.backend.access.users.management')
-                        <small class="text-muted">@lang('labels.backend.access.users.edit')</small>
+                        @lang('labels.backend.apartment.management')
+                        <small class="text-muted">@lang('labels.backend.apartment.edit')</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -24,36 +24,42 @@
             <div class="row mt-4 mb-4">
                 <div class="col">
                     <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.access.users.first_name'))->class('col-md-2 form-control-label')->for('first_name') }}
+                        {{ html()->label(__('validation.attributes.backend.apartment.apartment_name'))->class('col-md-2 form-control-label')->for('apartment_name') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('first_name')
+                            {{ html()->text('apartment_name')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.first_name'))
+                                ->placeholder(__('validation.attributes.backend.apartment.apartment_name'))
                                 ->attribute('maxlength', 191)
-                                ->required() }}
+                                ->required()
+                                ->autofocus() }}
+                        </div><!--col-->
+                    </div><!--form-group-->
+
+
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="number_of_floors">{{__('validation.attributes.backend.apartment.number_of_floors')}}</label>
+
+                        <div class="col-md-10">
+                            <input class="form-control" type="number" name="number_of_floors" id="number_of_floors" placeholder="{{__('validation.attributes.backend.apartment.number_of_floors')}}" maxlength="191" required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.last_name'))->class('col-md-2 form-control-label')->for('last_name') }}
+                        <label class="col-md-2 col-form-label" for="number_of_rooms">{{__('validation.attributes.backend.apartment.number_of_rooms')}}</label>
 
                         <div class="col-md-10">
-                            {{ html()->text('last_name')
-                                ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.last_name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                            <input class="form-control" type="number" name="number_of_rooms" id="number_of_rooms" placeholder="{{__('validation.attributes.backend.apartment.number_of_rooms')}}" maxlength="191" required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.email'))->class('col-md-2 form-control-label')->for('email') }}
+                        {{ html()->label(__('validation.attributes.backend.apartment.color'))->class('col-md-2 form-control-label')->for('color') }}
 
                         <div class="col-md-10">
-                            {{ html()->email('email')
+                            {{ html()->text('color')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.email'))
+                                ->placeholder(__('validation.attributes.backend.apartment.color'))
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div><!--col-->
@@ -66,7 +72,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col">
-                    {{ form_cancel(route('admin.auth.user.index'), __('buttons.general.cancel')) }}
+                    {{ form_cancel(route('admin.apartment.index'), __('buttons.general.cancel')) }}
                 </div><!--col-->
 
                 <div class="col text-right">

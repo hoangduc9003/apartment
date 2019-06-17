@@ -26,6 +26,8 @@ class CreateRoomsTable extends Migration
             $table->integer('floor')->nullable();
             $table->string('feature')->nullable();
             $table->string('price')->nullable();
+            $table->integer('way')->nullable();
+            $table->string('width')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,7 +16,6 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
-            $table->unsignedBigInteger('owner_id');
             $table->string('apartment_name')->nullable();
             $table->integer('number_of_floors')->nullable();
             $table->integer('number_of_rooms')->nullable();

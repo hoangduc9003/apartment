@@ -20,7 +20,6 @@ class Apartment extends Model
         'full_address',
         'number_of_floors',
         'number_of_rooms',
-        'owner_id',
         'country_id',
         'city_id',
         'district_id',
@@ -30,9 +29,9 @@ class Apartment extends Model
     /**
      * @return mixed
      */
-    public function owner()
+    public function owners()
     {
-        return $this->belongsTo(User::class, 'owner_id', 'id');
+        return $this->hasMany(Owner::class);
     }
 
     /**
@@ -72,7 +71,7 @@ class Apartment extends Model
      */
     public function getDeletePermanentlyButtonAttribute()
     {
-        return '<a href="'.route('admin.apartment.delete-permanently', $this).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.delete_permanently').'"></i></a> ';
+        return '<a href="'.route('admin.apartment.delete-permanently', ['id' => $this->id]).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.delete_permanently').'"></i></a> ';
     }
 
     /**
@@ -80,7 +79,7 @@ class Apartment extends Model
      */
     public function getRestoreButtonAttribute()
     {
-        return '<a href="'.route('admin.apartment.restore', $this).'" name="confirm_item" class="btn btn-info"><i class="fas fa-sync" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.restore_user').'"></i></a> ';
+        return '<a href="'.route('admin.apartment.restore', ['id' => $this->id]).'" name="confirm_item" class="btn btn-info"><i class="fas fa-sync" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.restore_user').'"></i></a> ';
     }
 
     /**
@@ -88,16 +87,16 @@ class Apartment extends Model
      */
     public function getActionButtonsAttribute()
     {
-        //     if ($this->trashed()) {
-        //         return '
-        // <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
-        //   '.$this->restore_button.'
-        //   '.$this->delete_permanently_button.'
-        // </div>';
-        //     }
+             if ($this->trashed()) {
+                 return '
+                 <div class="btn-group" role="group" aria-label="'.__('labels.backend.apartment.user_actions').'">
+                   '.$this->restore_button.'
+                   '.$this->delete_permanently_button.'
+                 </div>';
+             }
 
         return '
-    	<div class="btn-group" role="group" aria-label="'.__('labels.backend.customer.user_actions').'">
+    	<div class="btn-group" role="group" aria-label="'.__('labels.backend.apartment.user_actions').'">
 		  '.$this->show_button.'
 		  '.$this->edit_button.'
 		  '.$this->delete_button.'

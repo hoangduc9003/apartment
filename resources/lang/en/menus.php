@@ -66,6 +66,15 @@ return [
             'main' => 'Apartments',
             'view' => 'View Apartment',
         ],
+
+        'room' => [
+            'all' => 'All Rooms',
+            'create' => 'Create Room',
+            'deleted' => 'Deleted Room',
+            'edit' => 'Edit Room',
+            'main' => 'Rooms',
+            'view' => 'View Room',
+        ],
     ],
 
     'language-picker' => [

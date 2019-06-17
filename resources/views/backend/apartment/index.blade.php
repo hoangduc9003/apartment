@@ -43,7 +43,7 @@
                             @foreach($apartments as $apartment)
                                <tr>
                                     <td>{{ $apartment->apartment_name }}</td>
-                                    <td>{{ $apartment->owner->first_name . ' ' . $apartment->owner->last_name  }}</td>
+                                    <td></td>
                                     <td>{{ $apartment->number_of_floors }}</td>
                                     <td>{{ $apartment->number_of_rooms }}</td>
                                     <td>{{ $apartment->color }}</td>
