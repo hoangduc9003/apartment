@@ -17,13 +17,6 @@ class Country extends BaseModel
     ];
 
    
-    /**
-     * @return string
-     */
-    public function getShowButtonAttribute()
-    {
-        return '<a href="'.route('admin.country.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
-    }
 
     /**
      * @return string
@@ -49,38 +42,15 @@ class Country extends BaseModel
         return '';
     }
 
-    /**
-     * @return string
-     */
-    public function getDeletePermanentlyButtonAttribute()
-    {
-        return '<a href="'.route('admin.country.delete-permanently', $this).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.delete_permanently').'"></i></a> ';
-    }
-
-    /**
-     * @return string
-     */
-    public function getRestoreButtonAttribute()
-    {
-        return '<a href="'.route('admin.country.restore', $this).'" name="confirm_item" class="btn btn-info"><i class="fas fa-sync" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.restore_user').'"></i></a> ';
-    }
 
     /**
      * @return string
      */
     public function getActionButtonsAttribute()
     {
-        if ($this->trashed()) {
-            return '
-				<div class="btn-group" role="group" aria-label="'.__('labels.backend.country.country_actions').'">
-				  '.$this->restore_button.'
-				  '.$this->delete_permanently_button.'
-				</div>';
-        }
 
         return '
     	<div class="btn-group" role="group" aria-label="'.__('labels.backend.country.country_actions').'">
-		  '.$this->show_button.'
 		  '.$this->edit_button.'
 		  '.$this->delete_button.'
 		</div>';

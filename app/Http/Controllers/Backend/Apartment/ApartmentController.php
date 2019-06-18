@@ -59,7 +59,7 @@ class ApartmentController extends Controller
             'color',
             'full_address',
             'number_of_floors',
-            'number_of_rooms',
+            'number_of_rooms'
 //            'country_id',
 //            'city_id',
 //            'district_id',

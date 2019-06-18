@@ -75,6 +75,38 @@ return [
             'main' => 'Rooms',
             'view' => 'View Room',
         ],
+        'country' => [
+            'all' => 'All Countries',
+            'create' => 'Create Country',
+            'deleted' => 'Deleted Country',
+            'edit' => 'Edit Country',
+            'main' => 'Countries',
+            'view' => 'View Country',
+        ],
+        'city' => [
+            'all' => 'All Cities',
+            'create' => 'Create City',
+            'deleted' => 'Deleted City',
+            'edit' => 'Edit City',
+            'main' => 'Cities',
+            'view' => 'View City',
+        ],
+        'district' => [
+            'all' => 'All Districts',
+            'create' => 'Create District',
+            'deleted' => 'Deleted District',
+            'edit' => 'Edit District',
+            'main' => 'Districts',
+            'view' => 'View District',
+        ],
+        'commune' => [
+            'all' => 'All Communes',
+            'create' => 'Create Commune',
+            'deleted' => 'Deleted Commune',
+            'edit' => 'Edit Commune',
+            'main' => 'Communes',
+            'view' => 'View Commune',
+        ],
     ],
 
     'language-picker' => [

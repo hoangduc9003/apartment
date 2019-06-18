@@ -32,6 +32,7 @@ return [
         'create_new' => 'Create New',
         'toolbar_btn_groups' => 'Toolbar with button groups',
         'more' => 'More',
+        'import' => 'Import',
     ],
 
     'backend' => [
@@ -92,7 +93,7 @@ return [
             'actions' => 'Room Actions',
         ],
         'country' => [
-            'management' => 'Customer Country',
+            'management' => 'Country Management',
             'create' => "Create Country",
             'edit' => "Edit Country",
             'total' => 'country total|country total',
@@ -100,6 +101,27 @@ return [
             'three_letter_iso_code' => 'Three Letter Iso Code',
             'nationality' => "Nationality",
             'country_actions' => 'Country Actions',
+        ],
+        'city' => [
+            'management' => 'City Management',
+            'create' => "Create City",
+            'edit' => "Edit City",
+            'total' => 'city total|city total',
+            'city_actions' => 'City Actions',
+        ],
+        'district' => [
+            'management' => 'District Management',
+            'create' => "Create District",
+            'edit' => "Edit District",
+            'total' => 'district total|district total',
+            'district_actions' => 'District Actions',
+        ],
+        'commune' => [
+            'management' => 'Commune Management',
+            'create' => "Create Commune",
+            'edit' => "Edit Commune",
+            'total' => 'commune total|commune total',
+            'commune_actions' => 'Commune Actions',
         ],
         'access' => [
             'roles' => [
