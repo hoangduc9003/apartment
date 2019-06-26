@@ -17,6 +17,7 @@ class CreateRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->unsignedBigInteger('apartment_id');
+            $table->string('name')->nullable();
             $table->integer('bed')->nullable();
             $table->integer('chair')->nullable();
             $table->integer('cabinet')->nullable();

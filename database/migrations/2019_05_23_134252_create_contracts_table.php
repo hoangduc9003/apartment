@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRentersTable extends Migration
+class CreateContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRentersTable extends Migration
      */
     public function up()
     {
-        Schema::create('renters', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('room_id')->nullable();    
@@ -21,7 +21,6 @@ class CreateRentersTable extends Migration
             $table->dateTime('checkout')->nullable();
             $table->boolean('is_checkout')->default(false);
             $table->string('description')->nullable();
-            $table->string('customer_list')->nullable();
             $table->string('service_list')->nullable();
             $table->string('total_price')->nullable();
             $table->softDeletes();
@@ -36,6 +35,6 @@ class CreateRentersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('renters');
+        Schema::dropIfExists('contracts');
     }
 }

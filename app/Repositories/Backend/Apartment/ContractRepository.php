@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Backend\Apartment;
 
-use App\Models\Apartment\Renter;
+use App\Models\Apartment\Contract;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -11,14 +11,14 @@ use Illuminate\Pagination\LengthAwarePaginator;
 /**
  * Class UserRepository.
  */
-class RenterRepository extends BaseRepository
+class ContractRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model()
     {
-        return Renter::class;
+        return Contract::class;
     }
 
 
@@ -57,12 +57,12 @@ class RenterRepository extends BaseRepository
      *
      * @throws \Exception
      * @throws \Throwable
-     * @return Renter
+     * @return Contract
      */
-    public function create(array $data) : Renter
+    public function create(array $data) : Contract
     {
         return DB::transaction(function () use ($data) {
-            $renter = parent::create([
+            $contract = parent::create([
                 'apartment_id' => $data['apartment_id'],
                 'room_id' => $data['room_id'],
                 'checkin' => $data['checkin'],
@@ -70,12 +70,11 @@ class RenterRepository extends BaseRepository
                 'is_checkout' => $data['is_checkout'],
                 'description' => $data['description'],
                 'total_price' => $data['total_price'],
-                'customer_list' => $data['customer_list'],
                 'service_list' => $data['service_list'],
             ]);
 
-            if ($renter) {
-                return $renter;
+            if ($contract) {
+                return $contract;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.create_error'));
@@ -83,19 +82,19 @@ class RenterRepository extends BaseRepository
     }
 
     /**
-     * @param Renter $renter
+     * @param Contract $contract
      * @param array $data
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Renter
+     * @return Contract
      */
-    public function update(Renter $renter, array $data) : Renter
+    public function update(Contract $contract, array $data) : Contract
     {
 
-        return DB::transaction(function () use ($renter, $data) {
-            if ($renter->update([
+        return DB::transaction(function () use ($contract, $data) {
+            if ($contract->update([
                 'apartment_id' => $data['apartment_id'],
                 'room_id' => $data['room_id'],
                 'checkin' => $data['checkin'],
@@ -103,11 +102,10 @@ class RenterRepository extends BaseRepository
                 'is_checkout' => $data['is_checkout'],
                 'description' => $data['description'],
                 'total_price' => $data['total_price'],
-                'customer_list' => $data['customer_list'],
                 'service_list' => $data['service_list'],
             ])) {
 
-                return $renter;
+                return $contract;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.update_error'));
@@ -116,24 +114,24 @@ class RenterRepository extends BaseRepository
 
 
     /**
-     * @param Renter $renter
+     * @param Contract $contract
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return Renter
+     * @return Contract
      */
-    public function forceDelete(Renter $renter) : Renter
+    public function forceDelete(Contract $contract) : Contract
     {
-        if ($renter->deleted_at === null) {
+        if ($contract->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.delete_first'));
         }
 
-        return DB::transaction(function () use ($renter) {
+        return DB::transaction(function () use ($contract) {
             // Delete associated relationships
 
-            if ($renter->forceDelete()) {
-                return $renter;
+            if ($contract->forceDelete()) {
+                return $contract;
             }
 
             throw new GeneralException(__('exceptions.backend.access.users.delete_error'));
@@ -141,19 +139,19 @@ class RenterRepository extends BaseRepository
     }
 
     /**
-     * @param Renter $renter
+     * @param Contract $contract
      *
      * @throws GeneralException
-     * @return Renter
+     * @return Contract
      */
-    public function restore(Renter $renter) : Renter
+    public function restore(Contract $contract) : Contract
     {
-        if ($renter->deleted_at === null) {
+        if ($contract->deleted_at === null) {
             throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
         }
 
-        if ($renter->restore()) {
-            return $renter;
+        if ($contract->restore()) {
+            return $contract;
         }
 
         throw new GeneralException(__('exceptions.backend.access.users.restore_error'));

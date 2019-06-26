@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\Apartment\RoomController;
 use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Backend\Apartment\ApartmentController;
 use App\Http\Controllers\Backend\Location\CountryController;
+use App\Http\Controllers\Backend\Apartment\ContractController;
 use App\Http\Controllers\Backend\DashboardController;
 
 // All route names are prefixed with 'admin.'.
@@ -86,3 +87,22 @@ Route::group(['prefix' => 'room/{id}'], function () {
     Route::get('restore', [RoomController::class, 'restore'])->name('room.restore');
 });
 
+
+// Contract Routes
+Route::get('contract/deleted', [ContractController::class, 'getDeleted'])->name('contract.deleted');
+Route::get('contract', [ContractController::class, 'index'])->name('contract.index');
+Route::get('contract/create', [ContractController::class, 'create'])->name('contract.create');
+Route::post('contract', [ContractController::class, 'store'])->name('contract.store');
+Route::group(['prefix' => 'contract/{contract}'], function () {
+    // Apartment
+    Route::get('/', [ContractController::class, 'show'])->name('contract.show');
+    Route::get('edit', [ContractController::class, 'edit'])->name('contract.edit');
+    Route::patch('/', [ContractController::class, 'update'])->name('contract.update');
+    Route::delete('/', [ContractController::class, 'destroy'])->name('contract.destroy');
+
+});
+Route::group(['prefix' => 'contract/{id}'], function () {
+    // Deleted
+    Route::get('delete', [ContractController::class, 'delete'])->name('contract.delete-permanently');
+    Route::get('restore', [ContractController::class, 'restore'])->name('contract.restore');
+});

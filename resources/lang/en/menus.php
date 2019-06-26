@@ -49,7 +49,14 @@ return [
             'system' => 'System',
         ],
 
+        'title' => [
+            'apartment' => 'Apartment',
+            'location' => 'Location',
+            'customer' => 'Customer',
+        ],
+
         'customer' => [
+            'title' => 'Customer',
             'all' => 'All Customers',
             'create' => 'Create Customer',
             'deleted' => 'Deleted Customers',
@@ -59,6 +66,7 @@ return [
         ],
 
         'apartment' => [
+            'title' => 'Apartment',
             'all' => 'All Apartments',
             'create' => 'Create Apartment',
             'deleted' => 'Deleted Apartment',
@@ -68,6 +76,7 @@ return [
         ],
 
         'room' => [
+            'title' => 'Room',
             'all' => 'All Rooms',
             'create' => 'Create Room',
             'deleted' => 'Deleted Room',
@@ -76,6 +85,7 @@ return [
             'view' => 'View Room',
         ],
         'country' => [
+            'title' => 'Country',
             'all' => 'All Countries',
             'create' => 'Create Country',
             'deleted' => 'Deleted Country',
@@ -84,6 +94,7 @@ return [
             'view' => 'View Country',
         ],
         'city' => [
+            'title' => 'City',
             'all' => 'All Cities',
             'create' => 'Create City',
             'deleted' => 'Deleted City',
@@ -92,6 +103,7 @@ return [
             'view' => 'View City',
         ],
         'district' => [
+            'title' => 'District',
             'all' => 'All Districts',
             'create' => 'Create District',
             'deleted' => 'Deleted District',
@@ -100,12 +112,22 @@ return [
             'view' => 'View District',
         ],
         'commune' => [
+            'title' => 'Commune',
             'all' => 'All Communes',
             'create' => 'Create Commune',
             'deleted' => 'Deleted Commune',
             'edit' => 'Edit Commune',
             'main' => 'Communes',
             'view' => 'View Commune',
+        ],
+        'contract' => [
+            'title' => 'Contract',
+            'all' => 'All Contracts',
+            'create' => 'Create Contract',
+            'deleted' => 'Deleted Contract',
+            'edit' => 'Edit Contract',
+            'main' => 'Contracts',
+            'view' => 'View Contract',
         ],
     ],
 

@@ -83,6 +83,47 @@
                     </ul>
                 </li>
             @endif
+
+            <li class="nav-title">
+                @lang('menus.backend.title.apartment')
+            </li>
+
+            <li class="nav-item nav-dropdown {{
+                    active_class(Active::checkUriPattern('admin/*'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Active::checkUriPattern('admin/*'))
+                    }}" href="#">
+                        <i class="nav-icon far fa-user"></i>
+                        @lang('menus.backend.apartment.title')
+
+                        @if ($pending_approval > 0)
+                            <span class="badge badge-danger">{{ $pending_approval }}</span>
+                        @endif
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Active::checkUriPattern('admin/apartment*'))
+                            }}" href="{{ route('admin.apartment.index') }}">
+                                @lang('labels.backend.apartment.management')
+
+                                @if ($pending_approval > 0)
+                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                @endif
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Active::checkUriPattern('admin/room/*'))
+                            }}" href="{{ route('admin.room.index') }}">
+                                @lang('labels.backend.room.management')
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
         </ul>
     </nav>
 

@@ -55,16 +55,17 @@ class RoomController extends Controller
     {
         $this->roomRepository->create($request->only(
             'bed',
-                'cabinet',
-                'apartment_id',
-                'chair',
-                'bathroom',
-                'air_conditional',
-                'electric_water_heater',
-                'feature',
-                'floor',
-                'way',
-                'width'
+            'cabinet',
+            'apartment_id',
+            'chair',
+            'bathroom',
+            'air_conditional',
+            'electric_water_heater',
+            'feature',
+            'floor',
+            'way',
+            'width',
+            'name'
         ));
 
         return redirect()->route('admin.room.index')->withFlashSuccess(__('alerts.backend.room.created'));
@@ -114,7 +115,8 @@ class RoomController extends Controller
             'feature',
             'floor',
             'way',
-            'width'
+            'width',
+            'name'
         ));
 
         return redirect()->route('admin.room.index')->withFlashSuccess(__('alerts.backend.room.updated'));

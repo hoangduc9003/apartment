@@ -25,6 +25,7 @@ class Room extends Model
         'apartment_id',
         'way',
         'width',
+        'name',
     ];
 
     /**

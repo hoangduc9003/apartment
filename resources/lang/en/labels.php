@@ -123,6 +123,21 @@ return [
             'total' => 'commune total|commune total',
             'commune_actions' => 'Commune Actions',
         ],
+        'contract' => [
+            'management' => 'Contract Management',
+            'create' => "Create Contract",
+            'edit' => "Edit Contract",
+            'total' => 'contract total|contract total',
+            'commune_actions' => 'Contract Actions',
+            'apartment_id' => 'Apartment',
+            'room_id' => 'Room',
+            'checkin' => 'Checkin',
+            'checkout' => 'Checkout',
+            'is_checkout' => 'Is Checkout',
+            'description' => 'Description',
+            'total_price' => 'Total Price',
+            'service_list' => 'Service List',
+        ],
         'access' => [
             'roles' => [
                 'create' => 'Create Role',

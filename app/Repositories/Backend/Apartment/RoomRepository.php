@@ -74,6 +74,7 @@ class RoomRepository extends BaseRepository
                 'floor' => $data['floor'],
                 'way' => $data['way'],
                 'width' => $data['width'],
+                'name' => $data['name'],
             ]);
 
             if ($room) {
@@ -109,6 +110,7 @@ class RoomRepository extends BaseRepository
                 'floor' => $data['floor'],
                 'way' => $data['way'],
                 'width' => $data['width'],
+                'name' => $data['name'],
             ])) {
 
                 return $room;

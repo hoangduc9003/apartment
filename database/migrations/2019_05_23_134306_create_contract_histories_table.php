@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRenterHistoriesTable extends Migration
+class CreateContractHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRenterHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('renter_histories', function (Blueprint $table) {
+        Schema::create('contract_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('room_renter_id');
+            $table->unsignedBigInteger('contract_id');
             $table->string('price')->nullable();
             $table->integer('pay_range')->nullable();
             $table->string('total_price')->nullable();
@@ -33,6 +33,6 @@ class CreateRenterHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('renter_histories');
+        Schema::dropIfExists('contract_histories');
     }
 }
