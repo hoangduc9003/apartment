@@ -62,6 +62,14 @@
                             </div><!--col-->
                         </div><!--form-group-->
 
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="full_address">{{__('validation.attributes.backend.apartment.full_address')}}</label>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" name="full_address" id="full_address" placeholder="{{__('validation.attributes.backend.apartment.full_address')}}" required=""></textarea>
+                            </div><!--col-->
+                        </div><!--form-group-->
+
                     </div><!--col-->
                 </div><!--row-->
             </div><!--card-body-->

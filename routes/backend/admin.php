@@ -60,7 +60,7 @@ Route::get('country/create', [CountryController::class, 'create'])->name('countr
 Route::post('country', [CountryController::class, 'store'])->name('country.store');
 Route::get('country/import', [CountryController::class, 'import'])->name('country.import');
 Route::post('country/postImport', [CountryController::class, 'postImport'])->name('country.post.import');
-Route::group(['prefix' => 'apartment/{apartment}'], function () {
+Route::group(['prefix' => 'country/{country}'], function () {
     // User
     Route::get('/', [CountryController::class, 'show'])->name('country.show');
     Route::get('edit', [CountryController::class, 'edit'])->name('country.edit');

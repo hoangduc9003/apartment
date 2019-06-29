@@ -85,44 +85,119 @@
             @endif
 
             <li class="nav-title">
+                @lang('menus.backend.title.customer')
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon far fa-user"></i>
+                    @lang('menus.backend.customer.title')
+
+                    @if ($pending_approval > 0)
+                        <span class="badge badge-danger">{{ $pending_approval }}</span>
+                    @endif
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Active::checkUriPattern('admin/customer*'))
+                        }}" href="{{ route('admin.customer.index') }}">
+                            @lang('labels.backend.customer.management')
+
+                            @if ($pending_approval > 0)
+                                <span class="badge badge-danger">{{ $pending_approval }}</span>
+                            @endif
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-title">
                 @lang('menus.backend.title.apartment')
             </li>
 
-            <li class="nav-item nav-dropdown {{
-                    active_class(Active::checkUriPattern('admin/*'), 'open')
-                }}">
-                    <a class="nav-link nav-dropdown-toggle {{
-                        active_class(Active::checkUriPattern('admin/*'))
-                    }}" href="#">
-                        <i class="nav-icon far fa-user"></i>
-                        @lang('menus.backend.apartment.title')
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon far fa-user"></i>
+                    @lang('menus.backend.apartment.title')
 
-                        @if ($pending_approval > 0)
-                            <span class="badge badge-danger">{{ $pending_approval }}</span>
-                        @endif
-                    </a>
+                    @if ($pending_approval > 0)
+                        <span class="badge badge-danger">{{ $pending_approval }}</span>
+                    @endif
+                </a>
 
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                                active_class(Active::checkUriPattern('admin/apartment*'))
-                            }}" href="{{ route('admin.apartment.index') }}">
-                                @lang('labels.backend.apartment.management')
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Active::checkUriPattern('admin/apartment*'))
+                        }}" href="{{ route('admin.apartment.index') }}">
+                            @lang('labels.backend.apartment.management')
 
-                                @if ($pending_approval > 0)
-                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
-                                @endif
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                                active_class(Active::checkUriPattern('admin/room/*'))
-                            }}" href="{{ route('admin.room.index') }}">
-                                @lang('labels.backend.room.management')
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            @if ($pending_approval > 0)
+                                <span class="badge badge-danger">{{ $pending_approval }}</span>
+                            @endif
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Active::checkUriPattern('admin/room/*'))
+                        }}" href="{{ route('admin.room.index') }}">
+                            @lang('labels.backend.room.management')
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-title">
+                @lang('menus.backend.title.location')
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon far fa-user"></i>
+                    @lang('menus.backend.title.location')
+
+                    @if ($pending_approval > 0)
+                        <span class="badge badge-danger">{{ $pending_approval }}</span>
+                    @endif
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Active::checkUriPattern('admin/country*'))
+                        }}" href="{{ route('admin.country.index') }}">
+                            @lang('labels.backend.country.management')
+
+                            @if ($pending_approval > 0)
+                                <span class="badge badge-danger">{{ $pending_approval }}</span>
+                            @endif
+                        </a>
+                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{--}}
+{{--                            active_class(Active::checkUriPattern('admin/city/*'))--}}
+{{--                        }}" href="{{ route('admin.city.index') }}">--}}
+{{--                            @lang('labels.backend.city.management')--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{--}}
+{{--                            active_class(Active::checkUriPattern('admin/district/*'))--}}
+{{--                        }}" href="{{ route('admin.district.index') }}">--}}
+{{--                            @lang('labels.backend.district.management')--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{--}}
+{{--                            active_class(Active::checkUriPattern('admin/commune/*'))--}}
+{{--                        }}" href="{{ route('admin.commune.index') }}">--}}
+{{--                            @lang('labels.backend.commune.management')--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+                </ul>
+            </li>
 
         </ul>
     </nav>

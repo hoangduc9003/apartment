@@ -53,6 +53,7 @@ return [
             'apartment' => 'Apartment',
             'location' => 'Location',
             'customer' => 'Customer',
+            'location_management' => 'Location Management'
         ],
 
         'customer' => [

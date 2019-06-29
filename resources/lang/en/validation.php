@@ -203,6 +203,7 @@ return [
                 'number_of_floors' => "Number Of Floors",
                 'number_of_rooms' => 'Number Of Rooms',
                 'apartment_actions' => 'Apartment Actions',
+                'full_address' => 'Full Address',
             ],
 
             'room' => [
