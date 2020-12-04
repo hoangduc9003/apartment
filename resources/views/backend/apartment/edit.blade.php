@@ -3,11 +3,11 @@
 @section('title', __('labels.backend.apartment.management') . ' | ' . __('labels.backend.apartment.edit'))
 
 @section('breadcrumb-links')
-{{--    @include('backend.auth.user.includes.breadcrumb-links')--}}
+    @include('backend.auth.user.includes.breadcrumb-links')
 @endsection
 
 @section('content')
-{{ html()->modelForm($customer, 'PATCH', route('admin.apartment.update', $customer->id))->class('form-horizontal')->open() }}
+{{ html()->modelForm($apartment, 'PATCH', route('admin.apartment.update', $apartment->id))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -27,12 +27,13 @@
                         {{ html()->label(__('validation.attributes.backend.apartment.apartment_name'))->class('col-md-2 form-control-label')->for('apartment_name') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('apartment_name')
-                                ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.apartment.apartment_name'))
-                                ->attribute('maxlength', 191)
-                                ->required()
-                                ->autofocus() }}
+                            <input class="form-control"
+                                   type="text"
+                                   value="{{old('apartment_name', $apartment->apartment_name)}}"
+                                   name="apartment_name" id="apartment_name"
+                                   placeholder="{{__('validation.attributes.backend.apartment.apartment_name')}}"
+                                   maxlength="191"
+                                   required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
@@ -41,7 +42,12 @@
                         <label class="col-md-2 col-form-label" for="number_of_floors">{{__('validation.attributes.backend.apartment.number_of_floors')}}</label>
 
                         <div class="col-md-10">
-                            <input class="form-control" type="number" name="number_of_floors" id="number_of_floors" placeholder="{{__('validation.attributes.backend.apartment.number_of_floors')}}" maxlength="191" required="">
+                            <input class="form-control"
+                                   type="number"
+                                   value="{{old('number_of_floors', $apartment->number_of_floors)}}"
+                                   name="number_of_floors" id="number_of_floors"
+                                   placeholder="{{__('validation.attributes.backend.apartment.number_of_floors')}}"
+                                   required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
@@ -49,7 +55,13 @@
                         <label class="col-md-2 col-form-label" for="number_of_rooms">{{__('validation.attributes.backend.apartment.number_of_rooms')}}</label>
 
                         <div class="col-md-10">
-                            <input class="form-control" type="number" name="number_of_rooms" id="number_of_rooms" placeholder="{{__('validation.attributes.backend.apartment.number_of_rooms')}}" maxlength="191" required="">
+                            <input class="form-control"
+                                   type="number"
+                                   name="number_of_rooms"
+                                   value="{{old('number_of_rooms', $apartment->number_of_rooms)}}"
+                                   id="number_of_rooms"
+                                   placeholder="{{__('validation.attributes.backend.apartment.number_of_rooms')}}"
+                                   maxlength="191" required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
@@ -57,14 +69,15 @@
                         {{ html()->label(__('validation.attributes.backend.apartment.color'))->class('col-md-2 form-control-label')->for('color') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('color')
-                                ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.apartment.color'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                            <input class="form-control"
+                                   type="text"
+                                   value="{{old('color', $apartment->color)}}"
+                                   name="color" id="color"
+                                   placeholder="{{__('validation.attributes.backend.apartment.color')}}"
+                                   maxlength="191"
+                                   required="">
                         </div><!--col-->
                     </div><!--form-group-->
-
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-body-->

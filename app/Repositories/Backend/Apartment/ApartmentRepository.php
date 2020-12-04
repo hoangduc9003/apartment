@@ -98,7 +98,7 @@ class ApartmentRepository extends BaseRepository
         return DB::transaction(function () use ($apartment, $data) {
             if ($apartment->update([
 //                'address' => $data['address'],
-                'full_address' => $data['full_address'],
+//                'full_address' => $data['full_address'],
                 'apartment_name' => $data['apartment_name'],
                 'color' => $data['color'],
                 'number_of_floors' => $data['number_of_floors'],

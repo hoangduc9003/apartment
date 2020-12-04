@@ -33,27 +33,6 @@ Route::group(['prefix' => 'customer/{id}'], function () {
     Route::get('restore', [CustomerController::class, 'restore'])->name('customer.restore');
 });
 
-
-// Apartment Routes
-Route::get('apartment/deleted', [ApartmentController::class, 'getDeleted'])->name('apartment.deleted');
-Route::get('apartment', [ApartmentController::class, 'index'])->name('apartment.index');
-Route::get('apartment/create', [ApartmentController::class, 'create'])->name('apartment.create');
-Route::post('apartment', [ApartmentController::class, 'store'])->name('apartment.store');
-Route::group(['prefix' => 'apartment/{apartment}'], function () {
-    // Apartment
-    Route::get('/', [ApartmentController::class, 'show'])->name('apartment.show');
-    Route::get('edit', [ApartmentController::class, 'edit'])->name('apartment.edit');
-    Route::patch('/', [ApartmentController::class, 'update'])->name('apartment.update');
-    Route::delete('/', [ApartmentController::class, 'destroy'])->name('apartment.destroy');
-
-});
-Route::group(['prefix' => 'apartment/{id}'], function () {
-    // Deleted
-    Route::get('delete', [ApartmentController::class, 'delete'])->name('apartment.delete-permanently');
-    Route::get('restore', [ApartmentController::class, 'restore'])->name('apartment.restore');
-});
-
-
 // Country Routes
 Route::get('country', [CountryController::class, 'index'])->name('country.index');
 Route::get('country/create', [CountryController::class, 'create'])->name('country.create');
@@ -66,6 +45,27 @@ Route::group(['prefix' => 'country/{country}'], function () {
     Route::get('edit', [CountryController::class, 'edit'])->name('country.edit');
     Route::patch('/', [CountryController::class, 'update'])->name('country.update');
     Route::delete('/', [CountryController::class, 'destroy'])->name('country.destroy');
+});
+
+// Apartment Api
+Route::post('getAllApartmentByOwner', [ApartmentController::class, 'getAllApartmentByOwner'])->name('apartment.getAllApartmentByOwner');
+
+// Apartment Routes
+Route::get('apartment/deleted', [ApartmentController::class, 'getDeleted'])->name('apartment.deleted');
+Route::get('apartment', [ApartmentController::class, 'index'])->name('apartment.index');
+Route::get('apartment/create', [ApartmentController::class, 'create'])->name('apartment.create');
+Route::post('apartment', [ApartmentController::class, 'store'])->name('apartment.store');
+Route::group(['prefix' => 'apartment/{apartment}'], function () {
+    // Apartment
+    Route::get('/', [ApartmentController::class, 'show'])->name('apartment.show');
+    Route::get('edit', [ApartmentController::class, 'edit'])->name('apartment.edit');
+    Route::patch('/', [ApartmentController::class, 'update'])->name('apartment.update');
+    Route::delete('/', [ApartmentController::class, 'destroy'])->name('apartment.destroy');
+});
+Route::group(['prefix' => 'apartment/{id}'], function () {
+    // Deleted
+    Route::get('delete', [ApartmentController::class, 'delete'])->name('apartment.delete-permanently');
+    Route::get('restore', [ApartmentController::class, 'restore'])->name('apartment.restore');
 });
 
 // Room Routes
@@ -94,7 +94,7 @@ Route::get('contract', [ContractController::class, 'index'])->name('contract.ind
 Route::get('contract/create', [ContractController::class, 'create'])->name('contract.create');
 Route::post('contract', [ContractController::class, 'store'])->name('contract.store');
 Route::group(['prefix' => 'contract/{contract}'], function () {
-    // Apartment
+    // Contract
     Route::get('/', [ContractController::class, 'show'])->name('contract.show');
     Route::get('edit', [ContractController::class, 'edit'])->name('contract.edit');
     Route::patch('/', [ContractController::class, 'update'])->name('contract.update');

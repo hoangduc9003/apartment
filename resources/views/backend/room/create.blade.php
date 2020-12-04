@@ -19,13 +19,39 @@
                 <hr>
                 <input type="hidden" name="apartment_id" value="1">
 
+
+
                 <div class="row mt-4 mb-4">
+
                     <div class="col">
+                        <div class="form-group row">
+                            {{ html()->label(__('validation.attributes.backend.room.apartment_id'))->class('col-md-2 form-control-label')->for('apartment_id') }}
+
+                            <div class="col-md-10">
+                                <select id="apartment_id" name="apartment_id">
+                                    <option value='0'>- Search Apartment -</option>
+                                </select>
+                            </div><!--col-->
+                        </div><!--form-group-->
+
+                        <div class="form-group row">
+                            {{ html()->label(__('validation.attributes.backend.room.name'))->class('col-md-2 form-control-label')->for('name') }}
+
+                            <div class="col-md-10">
+                                {{ html()->text('name')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.room.name'))
+                                    ->attribute('maxlength', 191)
+                                    ->required()
+                                    ->autofocus() }}
+                            </div><!--col-->
+                        </div><!--form-group-->
+
                         <div class="form-group row">
                             {{ html()->label(__('validation.attributes.backend.room.feature'))->class('col-md-2 form-control-label')->for('feature') }}
 
                             <div class="col-md-10">
-                                {{ html()->text('apartment_name')
+                                {{ html()->text('feature')
                                     ->class('form-control')
                                     ->placeholder(__('validation.attributes.backend.room.feature'))
                                     ->attribute('maxlength', 191)
@@ -59,10 +85,10 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label" for="gender">{{__('validation.attributes.backend.room.bath_room')}}</label>
+                            <label class="col-md-2 col-form-label" for="gender">{{__('validation.attributes.backend.room.bathroom')}}</label>
                             <div class="col-md-10 col-form-label">
                                 <div class="form-check form-check-inline mr-4">
-                                    <input class="form-check-input" id="bath_room-yes" type="radio" checked="true" value="1" name="bath_room">
+                                    <input class="form-check-input" id="bath_room-yes" type="radio" checked="true" value="1" name="bathroom">
                                     <label class="form-check-label" for="bath_room-yes">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline mr-4">
@@ -134,3 +160,26 @@
         </div><!--card-->
     {{ html()->form()->close() }}
 @endsection
+@push('after-scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#apartment_id").select2({
+                ajax: {
+                    url: "{{route('admin.apartment.getAllApartmentByOwner')}}",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    width: '100%',
+                    processResults: function (response) {
+                        console.log(response);
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    </script>
+@endpush

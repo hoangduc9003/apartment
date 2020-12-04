@@ -15,17 +15,10 @@ class Owner extends Model
     /**
      * @return mixed
      */
-    public function apartment()
+    public function apartments()
     {
-        return $this->belongsTo(Apartment::class, 'apartment_id','id');
+        return $this->hasMany(Apartment::class, 'apartment_id','id');
     }
 
-    /**
-     * @return mixed
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id','id');
-    }
 
 }

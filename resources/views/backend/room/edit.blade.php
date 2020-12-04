@@ -3,11 +3,11 @@
 @section('title', __('labels.backend.room.management') . ' | ' . __('labels.backend.room.edit'))
 
 @section('breadcrumb-links')
-{{--    @include('backend.auth.user.includes.breadcrumb-links')--}}
+    @include('backend.auth.user.includes.breadcrumb-links')
 @endsection
 
 @section('content')
-{{ html()->modelForm($customer, 'PATCH', route('admin.room.update', $customer->id))->class('form-horizontal')->open() }}
+{{ html()->modelForm($room, 'PATCH', route('admin.room.update', $room->id))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -29,12 +29,11 @@
                         {{ html()->label(__('validation.attributes.backend.room.feature'))->class('col-md-2 form-control-label')->for('feature') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('apartment_name')
-                                ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.room.feature'))
-                                ->attribute('maxlength', 191)
-                                ->required()
-                                ->autofocus() }}
+                            <input class="form-control"
+                                   type="text"
+                                   value="{{old('bed', $room->feature)}}"
+                                   name="feature" id="feature"
+                                   placeholder="{{__('validation.attributes.backend.room.feature')}}" required="">
                         </div><!--col-->
                     </div><!--form-group-->
 
@@ -42,7 +41,10 @@
                         <label class="col-md-2 col-form-label" for="bed">{{__('validation.attributes.backend.room.bed')}}</label>
 
                         <div class="col-md-10">
-                            <input class="form-control" type="text" value="{{old('bed', $room->bed)}}" name="bed" id="bed" placeholder="{{__('validation.attributes.backend.room.bed')}}" required="">
+                            <input class="form-control"
+                                   type="text" value="{{old('bed', $room->bed)}}"
+                                   name="bed" id="bed"
+                                   placeholder="{{__('validation.attributes.backend.room.bed')}}" required="">
                         </div><!--col-->
                     </div><!--form-group-->
 

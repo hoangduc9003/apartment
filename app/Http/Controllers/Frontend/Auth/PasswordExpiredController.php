@@ -17,7 +17,6 @@ class PasswordExpiredController extends Controller
     public function expired()
     {
         abort_unless(config('access.users.password_expires_days'), 404);
-
         return view('frontend.auth.passwords.expired');
     }
 

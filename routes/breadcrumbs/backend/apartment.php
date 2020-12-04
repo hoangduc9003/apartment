@@ -10,14 +10,14 @@ Breadcrumbs::for('admin.apartment.create', function ($trail) {
     $trail->push(__('labels.backend.apartment.create'), route('admin.apartment.create'));
 });
 
-Breadcrumbs::for('admin.apartment.edit', function ($trail) {
-    $trail->parent('admin.customer.index');
-    $trail->push(__('labels.backend.apartment.edit'), route('admin.apartment.edit'));
+Breadcrumbs::for('admin.apartment.edit', function ($trail, $id) {
+    $trail->parent('admin.apartment.index');
+    $trail->push(__('labels.backend.apartment.edit'), route('admin.apartment.edit'), $id);
 });
 
 Breadcrumbs::for('admin.apartment.deleted', function ($trail) {
-    $trail->parent('admin.customer.index');
-    $trail->push(__('menus.backend.customer.deleted'), route('admin.apartment.deleted'));
+    $trail->parent('admin.apartment.index');
+    $trail->push(__('menus.backend.apartment.deleted'), route('admin.apartment.deleted'));
 });
 
 

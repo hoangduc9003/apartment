@@ -48,7 +48,9 @@
                                     <td>{{ $apartment->number_of_rooms }}</td>
                                     <td>{{ $apartment->color }}</td>
                                     <td>{{ $apartment->full_address }}</td>
-                                    <td>{!! $apartment->action_buttons !!}</td>
+                                    <td>{!! $apartment->action_buttons !!}
+
+                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>

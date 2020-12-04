@@ -207,6 +207,7 @@ return [
             ],
 
             'room' => [
+                'apartment_id' => 'Apartment',
                 'air_conditional' => 'Air Conditional',
                 'bath_room' => 'Bath Room',
                 'chair' => "Chair",
@@ -218,6 +219,7 @@ return [
                 'electric_water_heater' => "Electric Water Heater",
                 'feature' => "Feature",
                 'price' => "Price",
+                'name' => "Name",
             ],
         ],
 

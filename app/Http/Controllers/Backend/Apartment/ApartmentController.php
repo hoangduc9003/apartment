@@ -53,7 +53,8 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->apartmentRepository->create($request->only(
+        $user = \Auth::user();
+        $apartment = $this->apartmentRepository->create($request->only(
 //            'address',
             'apartment_name',
             'color',
@@ -66,13 +67,16 @@ class ApartmentController extends Controller
 //            'commune_id'
         ));
 
+        if($apartment){
+            $apartment->owners()->attach($user->id);
+        }
         return redirect()->route('admin.apartment.index')->withFlashSuccess(__('alerts.backend.apartment.created'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Apartment\Apartment  $apartment
+     * @param Apartment $apartment
      * @return \Illuminate\Http\Response
      */
     public function show(Apartment $apartment)
@@ -84,20 +88,20 @@ class ApartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Apartment\Apartment  $apartment
-     * @return \Illuminate\Http\Response
+     * @param Apartment $apartment
+     * @return mixed
      */
     public function edit(Apartment $apartment)
     {
         return view('backend.apartment.edit')
-            ->withApartment($apartment);
+        ->withApartment($apartment);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Apartment\Apartment $apartment
+     * @param Apartment $apartment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Apartment $apartment)
@@ -106,7 +110,7 @@ class ApartmentController extends Controller
 //            'address',
             'apartment_name',
             'color',
-            'full_address',
+//            'full_address',
             'number_of_floors',
             'number_of_rooms'
 //            'country_id',
@@ -121,7 +125,7 @@ class ApartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Apartment\Apartment $apartment
+     * @param Apartment $apartment
      * @return \Illuminate\Http\Response
      */
     public function destroy(Apartment $apartment)
@@ -171,5 +175,15 @@ class ApartmentController extends Controller
         $this->apartmentRepository->restore($apartment);
 
         return redirect()->route('admin.apartment.index')->withFlashSuccess(__('alerts.backend.apartment.restored'));
+    }
+
+    public function getAllApartmentByOwner($sort = 'created_at'){
+        $user = \Auth::user();
+        $apartments = $user->apartments->pluck('apartment_name', 'id')->toArray();
+        $array = [];
+        foreach ($apartments as $key => $value){
+            $array[] = ['id' => $key, 'text' => $value];
+        }
+        return \Response::json($array);
     }
 }
